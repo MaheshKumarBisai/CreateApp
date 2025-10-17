@@ -1,4 +1,3 @@
-
 import { useAuth } from '@/utils/auth/useAuth';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -26,6 +25,7 @@ export default function RootLayout() {
   }, [initiate]);
 
   useEffect(() => {
+    console.log('isReady:', isReady); // Add this line
     if (isReady) {
       SplashScreen.hideAsync();
     }
@@ -38,8 +38,9 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack screenOptions={{ headerShown: false }} initialRouteName="index">
+        <Stack screenOptions={{ headerShown: false }} >
           <Stack.Screen name="index" />
+          <Stack.Screen name="(app)" />
         </Stack>
       </GestureHandlerRootView>
     </QueryClientProvider>
